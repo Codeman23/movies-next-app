@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { toastr } from 'react-redux-toastr';
 
 import Heading from '@/components/ui/heading/Heading';
 
@@ -16,6 +17,12 @@ const Home: FC<IHome> = () => {
 				title="Watch movies online"
 				className="text-gray-500 mb-8 text-xl"
 			/>
+			<button
+				onClick={() => toastr.success('Auth', 'You have succes!!')}
+				className="button"
+			>
+				Жми!
+			</button>
 		</Meta>
 	);
 };
