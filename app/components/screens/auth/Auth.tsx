@@ -11,8 +11,7 @@ import AuthFields from './AuthFields';
 import { useActions } from '@/hooks/useActions';
 
 const Auth: FC = () => {
-	//временно
-	// useAuthRedirects();
+	useAuthRedirects();
 	const { isLoading } = useAuth();
 
 	const [type, setType] = useState<'login' | 'register'>('login');
