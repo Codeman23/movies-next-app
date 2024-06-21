@@ -2,15 +2,17 @@ import { FC, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import Heading from '@/components/ui/heading/Heading';
 import { useAuth } from '@/hooks/useAuth';
-import { useAuthRedirect } from './useAuthRedirects';
+import { useAuthRedirects } from './useAuthRedirects';
 import { IAuthInput } from './auth.interface';
 import Meta from '@/utils/meta/Meta';
 import styles from './Auth.module.scss';
 import Button from '@/components/ui/form-elements/Button';
 import AuthFields from './AuthFields';
+import { useActions } from '@/hooks/useActions';
 
 const Auth: FC = () => {
-	useAuthRedirect();
+	//временно
+	// useAuthRedirects();
 	const { isLoading } = useAuth();
 
 	const [type, setType] = useState<'login' | 'register'>('login');
@@ -24,12 +26,7 @@ const Auth: FC = () => {
 		mode: 'onChange',
 	});
 
-	const login = (data: any) => {
-		console.table(`Login ${{ ...data }}`);
-	};
-	const register = (data: any) => {
-		console.table(`Register ${data}`);
-	};
+	const { login, register } = useActions();
 
 	const onSubmit: SubmitHandler<IAuthInput> = (data) => {
 		if (type === 'login') {
