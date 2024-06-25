@@ -1,10 +1,9 @@
 import { NextPageAuth } from '@/shared/types/auth.types';
 
-// import Home from '@/components/screens/home/Home';
+import Admin from '@/components/screens/admin/Admin';
 
 const AdminPage: NextPageAuth = () => {
-	// return <Home />;
-	return <></>;
+	return <Admin />;
 };
 
 AdminPage.isOnlyAdmin = true;
