@@ -36,7 +36,7 @@ export const useGenres = () => {
 
 	const { mutateAsync: deleteAsync } = useMutation(
 		'delete genre',
-		(userId: string) => GenreService.deleteGenre(userId),
+		(userId: string) => GenreService.delete(userId),
 		{
 			onError: (error) => {
 				toastrError(error, 'Delete genre');
