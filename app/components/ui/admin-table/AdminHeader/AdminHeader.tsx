@@ -4,20 +4,20 @@ import AdminCreateButton from './AdminCreateButton';
 import styles from './AdminHeader.module.scss';
 
 interface IAdminHeader {
-	onCLick?: () => void;
+	onClick?: () => void;
 	searchTerm: string;
 	handleSearch: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const AdminHeader: FC<IAdminHeader> = ({
-	onCLick,
+	onClick,
 	handleSearch,
 	searchTerm,
 }) => {
 	return (
 		<div className={styles.header}>
 			<SearchField searchTerm={searchTerm} handleSearch={handleSearch} />
-			{onCLick && <AdminCreateButton onCLick={onCLick} />}
+			{onClick && <AdminCreateButton onCLick={onClick} />}
 		</div>
 	);
 };

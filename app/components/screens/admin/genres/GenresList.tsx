@@ -7,14 +7,24 @@ import AdminTable from '@/components/ui/admin-table/AdminTable/AdminTable';
 import { useGenres } from './useGenres';
 
 const GenresList: FC = () => {
-	const { handleSearch, isLoading, searchTerm, data, deleteAsync } =
-		useGenres();
+	const {
+		handleSearch,
+		isLoading,
+		searchTerm,
+		data,
+		deleteAsync,
+		createAsync,
+	} = useGenres();
 
 	return (
 		<Meta title="Users">
 			<AdminNavigation />
 			<Heading title="Genres" />
-			<AdminHeader handleSearch={handleSearch} searchTerm={searchTerm} />
+			<AdminHeader
+				handleSearch={handleSearch}
+				searchTerm={searchTerm}
+				onClick={createAsync as any}
+			/>
 			<AdminTable
 				isLoading={isLoading}
 				removeHandler={deleteAsync}

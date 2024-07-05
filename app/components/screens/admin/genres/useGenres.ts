@@ -1,4 +1,5 @@
 import { ChangeEvent, useMemo, useState } from 'react';
+import { useRouter } from 'next/router';
 import { useQuery, useMutation } from 'react-query';
 import { useDebounce } from '@/hooks/useDebounce';
 import { GenreService } from '@/services/genre.service';
@@ -34,6 +35,23 @@ export const useGenres = () => {
 		setSearchTerm(e.target.value);
 	};
 
+	const { push } = useRouter();
+
+	const { mutateAsync: createAsync } = useMutation(
+		'create genre',
+		(userId: string) => GenreService.create(),
+		{
+			onError: (error) => {
+				toastrError(error, 'Create genre');
+			},
+
+			onSuccess: ({ data: _id }) => {
+				toastr.success('Create genre', 'create was successful');
+				push(getAdminUrl(`genre/edit/${_id}`));
+			},
+		}
+	);
+
 	const { mutateAsync: deleteAsync } = useMutation(
 		'delete genre',
 		(userId: string) => GenreService.delete(userId),
@@ -55,7 +73,8 @@ export const useGenres = () => {
 			...queryData,
 			searchTerm,
 			deleteAsync,
+			createAsync,
 		}),
-		[queryData, searchTerm, deleteAsync]
+		[queryData, searchTerm, deleteAsync, createAsync]
 	);
 };
