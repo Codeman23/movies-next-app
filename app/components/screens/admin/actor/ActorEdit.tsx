@@ -13,6 +13,7 @@ import Button from '@/components/ui/form-elements/Button';
 import generateSlug from '@/utils/string/generateSlug';
 import { stripHtml } from 'string-strip-html';
 import fromStyles from '../../../ui/form-elements/admin-form.module.scss';
+import UploadField from '@/components/ui/form-elements/UploadField/UploadField';
 
 const DynamicTextEditor = dynamic(
 	() => import('@/ui/form-elements/TextEditor'),
@@ -61,7 +62,7 @@ const ActorEdit: FC = () => {
 							/>
 						</div>
 
-						{/* <Controller
+						<Controller
 							name="photo"
 							control={control}
 							defaultValue=""
@@ -69,12 +70,18 @@ const ActorEdit: FC = () => {
 								field: { value, onChange },
 								fieldState: { error },
 							}) => (
-								//photo upload//
+								<UploadField
+									onChange={onChange}
+									value={value}
+									error={error}
+									folder="actors"
+									placeholder="Photo"
+								/>
 							)}
 							rules={{
 								required: 'Photo is required!',
 							}}
-						/> */}
+						/>
 						<Button>Update</Button>
 					</>
 				)}
