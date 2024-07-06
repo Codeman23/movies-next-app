@@ -23,7 +23,7 @@ const GenresList: FC = () => {
 			<AdminHeader
 				handleSearch={handleSearch}
 				searchTerm={searchTerm}
-				onClick={createAsync as any}
+				onClick={createAsync}
 			/>
 			<AdminTable
 				isLoading={isLoading}

@@ -7,13 +7,24 @@ import AdminTable from '@/components/ui/admin-table/AdminTable/AdminTable';
 import { useUsers } from './useActors';
 
 const ActorsList: FC = () => {
-	const { handleSearch, isLoading, searchTerm, data, deleteAsync } = useUsers();
+	const {
+		handleSearch,
+		isLoading,
+		searchTerm,
+		data,
+		deleteAsync,
+		createAsync,
+	} = useUsers();
 
 	return (
 		<Meta title="Users">
 			<AdminNavigation />
 			<Heading title="Actors" />
-			<AdminHeader handleSearch={handleSearch} searchTerm={searchTerm} />
+			<AdminHeader
+				handleSearch={handleSearch}
+				searchTerm={searchTerm}
+				onClick={createAsync}
+			/>
 			<AdminTable
 				isLoading={isLoading}
 				removeHandler={deleteAsync}

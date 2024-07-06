@@ -39,7 +39,7 @@ export const useGenres = () => {
 
 	const { mutateAsync: createAsync } = useMutation(
 		'create genre',
-		(userId: string) => GenreService.create(),
+		() => GenreService.create(),
 		{
 			onError: (error) => {
 				toastrError(error, 'Create genre');
