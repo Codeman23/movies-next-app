@@ -14,13 +14,6 @@ import generateSlug from '@/utils/string/generateSlug';
 import fromStyles from '../../../ui/form-elements/admin-form.module.scss';
 import UploadField from '@/components/ui/form-elements/UploadField/UploadField';
 
-const DynamicTextEditor = dynamic(
-	() => import('@/ui/form-elements/TextEditor'),
-	{
-		ssr: false,
-	}
-);
-
 const ActorEdit: FC = () => {
 	const {
 		handleSubmit,
