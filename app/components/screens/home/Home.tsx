@@ -1,13 +1,10 @@
 import { FC } from 'react';
-import { toastr } from 'react-redux-toastr';
-
 import Heading from '@/components/ui/heading/Heading';
-
 import Meta from '@/utils/meta/Meta';
-
+import Slider from '@/components/ui/slider/Slider';
 import { IHome } from './home.interface';
 
-const Home: FC<IHome> = () => {
+const Home: FC<IHome> = ({ slides }) => {
 	return (
 		<Meta
 			title="Watch movies online"
@@ -17,12 +14,7 @@ const Home: FC<IHome> = () => {
 				title="Watch movies online"
 				className="text-gray-500 mb-8 text-xl"
 			/>
-			<button
-				onClick={() => toastr.success('Auth', 'You have succes!!')}
-				className="button"
-			>
-				Жми!
-			</button>
+			{slides.length && <Slider slides={slides} />}
 		</Meta>
 	);
 };
