@@ -6,13 +6,20 @@ import SubHeading from '@/components/ui/heading/SubHeading';
 import Gallery from '@/components/ui/gallery/Gallery';
 import { IMoviePageProps } from '../../../../pages/movie/[slug]';
 import Content from './Content/Content';
+import useUpdateCountOpened from './useUpdateCountOpened';
 
 const DynamicPlayer = dynamic(
 	() => import('@/components/ui/video-player/VideoPlayer'),
 	{ ssr: false }
 );
 
+const DynamicRateMovie = dynamic(() => import('./RateMovie/RateMovie'), {
+	ssr: false,
+});
+
 const SingleMovie: FC<IMoviePageProps> = ({ similarMovies, movie }) => {
+	useUpdateCountOpened(movie!?.slug);
+
 	return (
 		<Meta title={`${movie?.title}`} description={`Watch ${movie?.title}`}>
 			{movie && (
@@ -32,7 +39,7 @@ const SingleMovie: FC<IMoviePageProps> = ({ similarMovies, movie }) => {
 				<Gallery items={similarMovies} />
 			</div>
 
-			{/* Rating */}
+			<DynamicRateMovie slug={movie!?.slug} id={movie!?._id} />
 		</Meta>
 	);
 };

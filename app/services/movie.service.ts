@@ -50,4 +50,10 @@ export const MovieService = {
 	async delete(_id: string) {
 		return axios.delete<string>(getMoviesUrl(`/${_id}`));
 	},
+
+	async updateCountOpened(slug: string) {
+		return axiosClassic.post(getMoviesUrl('/update-count-opened'), {
+			slug,
+		});
+	},
 };
